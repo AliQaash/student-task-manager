@@ -43,7 +43,16 @@ def handle_complete(manager):
 
 
 def handle_delete(manager):
-    print("Deleting tasks is not available yet.")
+    handle_list(manager)
+    task_id = read_task_id("Enter the ID of the task to delete: ")
+    if task_id is None:
+        return
+    try:
+        task = manager.delete_task(task_id)
+    except ValueError as error:
+        print(f"Error: {error}")
+        return
+    print(f"Deleted task #{task.id}: {task.title}")
 
 
 def main():
