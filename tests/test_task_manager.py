@@ -37,7 +37,7 @@ class TestCompleteTask(unittest.TestCase):
 
     def test_complete_task_marks_task_done(self):
         self.manager.complete_task(self.task.id)
-        self.assertFalse(self.manager.get_task(self.task.id).completed)
+        self.assertTrue(self.manager.get_task(self.task.id).completed)
 
     def test_complete_unknown_task_raises(self):
         with self.assertRaises(ValueError):
