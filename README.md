@@ -1,2 +1,12 @@
-# student-task-manager
-Python console task manager - CSC418 Lab Assignment 4
+# Student Task Manager
+
+A small Python console application that helps a student keep track of tasks.
+You can add tasks, show the list, mark tasks as completed and delete them.
+
+## Run
+
+```bash
+python3 main.py
+```
+
+Tasks are saved in `tasks.json` in the project folder.
