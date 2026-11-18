@@ -39,7 +39,16 @@ def handle_list(manager):
 
 
 def handle_complete(manager):
-    print("Completing tasks is not available yet.")
+    handle_list(manager)
+    task_id = read_task_id("Enter the ID of the task to complete: ")
+    if task_id is None:
+        return
+    try:
+        task = manager.complete_task(task_id)
+    except ValueError as error:
+        print(f"Error: {error}")
+        return
+    print(f"Task #{task.id} marked as completed.")
 
 
 def handle_delete(manager):
