@@ -1,0 +1,15 @@
+$ git log --oneline --graph --all
+* 75befc5 Let the user delete a task from the menu
+* 137e421 Add delete_task with task ID validation
+| * 176b915 Let the user complete a task from the menu
+| * 1daca7a Add complete_task to mark a task as done
+|/  
+| * 09192fd Show an error message when a task title is invalid
+| * 3617a8d Reject empty and overly long task titles
+|/  
+* e93b485 Describe the project and how to run it in README
+* 2f03728 Save tasks to a JSON file between runs
+* 7b4c31c Add console menu for the task manager
+* 6ca311e Add Task model and TaskManager with add and list
+* ab54315 Initial commit
+

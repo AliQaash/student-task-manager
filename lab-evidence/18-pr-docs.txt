@@ -1,0 +1,256 @@
+$ gh pr diff 10 --name-only
+LAB-REPORT.md
+README.md
+docs/user-guide.md
+
+$ gh pr diff 10
+diff --git a/LAB-REPORT.md b/LAB-REPORT.md
+new file mode 100644
+index 0000000..d2746bd
+--- /dev/null
++++ b/LAB-REPORT.md
+@@ -0,0 +1,61 @@
++# Lab Report: Assignment 4
++
++**Course:** CSC418 DevOps for Cloud Computing
++**Assignment:** Student Task Manager Development and Version Control Using Git and GitHub
++**Repository:** https://github.com/AliQaash/student-task-manager
++
++## 1. Git vs GitHub; add, commit and push
++
++**Git** is a version control tool that runs on my own computer. It records snapshots of
++my project so I can see the history, go back to an older version and work on branches.
++**GitHub** is a website that hosts Git repositories online. It adds collaboration features
++on top of Git, like Issues, Pull Requests, code review, Actions and Releases.
++
++- `git add` puts the changes I choose into the staging area, ready for the next commit.
++- `git commit` saves the staged changes as a snapshot in my local history, with a message.
++- `git push` uploads my local commits to the remote repository on GitHub.
++
++## 2. Branches, Pull Requests and merge conflicts
++
++A **branch** lets me work on one feature separately without breaking `main`. In this
++project, add-task validation, completing tasks and deleting tasks were each built on their
++own branch. **Pull Requests** let me (or a teammate) review the changed files, discuss them,
++link them to an Issue and let the automated tests run before the code is merged into `main`.
++
++A **merge conflict** happens when two branches change the same lines of the same file
++differently, so Git cannot decide which version to keep. In Part D, `status/in-development`
++and `status/testing` both changed the "Project status" line in README.md. After the first
++branch was merged, merging the second one caused a conflict that I had to resolve by hand.
++
++## 3. fetch vs pull; merge vs rebase
++
++- `git fetch` downloads new commits from the remote but does not change my working files.
++  `git pull` does a fetch and then merges those commits into my current branch.
++- `git merge` joins two branches and keeps both histories, usually with a merge commit.
++  `git rebase` moves my commits so they sit on top of the other branch, which gives a
++  straight-line history but rewrites commit IDs, so it should not be used on shared branches.
++
++## 4. How Issues and Actions help a team
++
++**GitHub Issues** keep a list of the work to do: features, bugs and documentation. Each one
++has a description, labels and an assignee, and it closes automatically when a linked Pull
++Request is merged. Everyone on the team can see what is planned and what is finished.
++
++**GitHub Actions** runs the tests automatically on every push and Pull Request to `main`.
++A teammate can see straight away if a change breaks something, before it is merged. In
++this project the first workflow run failed because of a wrong test assertion, and the
++next run passed after I fixed it.
++
++## 5. A difficulty I faced and how I solved it
++
++<!-- Rewrite this in your own words before submitting. -->
++The hardest part was the merge conflict in Part D. When I merged `status/testing` after
++`status/in-development`, Git stopped and README.md contained `<<<<<<<`, `=======` and
++`>>>>>>>` markers. At first I didn't know which part to keep. I ran `git status` to see the
++conflicted file and `git diff` to compare both versions. Then I edited the line to combine
++both changes ("In development and testing"), removed the markers, kept the new Roadmap
++section from the second branch, and finished with `git add` and `git commit`.
++
++## Evidence
++
++Screenshots and command output for each part are in [lab-evidence/](lab-evidence/).
+diff --git a/README.md b/README.md
+index 3efc5bd..ddf9393 100644
+--- a/README.md
++++ b/README.md
+@@ -1,19 +1,79 @@
+ # Student Task Manager
+ 
++![Tests](https://github.com/AliQaash/student-task-manager/actions/workflows/tests.yml/badge.svg)
++
+ A small Python console application that helps a student keep track of tasks.
+-You can add tasks, show the list, mark tasks as completed and delete them.
++It was built for CSC418 (DevOps for Cloud Computing) Lab Assignment 4 to practise a full
++Git and GitHub workflow: commits, branches, Issues, Pull Requests, merge conflicts,
++GitHub Actions and releases.
++
++Project status: Released (v1.0.0)
++
++## Features
++
++- **Add tasks**: empty or whitespace-only titles are rejected, and titles are limited to 100 characters.
++- **Show tasks**: every task is listed with its ID and a `[x]` / `[ ]` completion mark.
++- **Complete tasks**: mark a task as done using its ID.
++- **Delete tasks**: remove a task using a valid ID; unknown IDs show an error.
++- **Saved between runs**: tasks are stored in `tasks.json`.
++- **Automated tests**: `unittest` suite, run on GitHub Actions for every push and Pull Request to `main`.
++
++## Requirements
++
++- Python 3.8 or newer
++- No third-party packages
+ 
+-Project status: In development and testing
++## Setup
+ 
+-## Run
++```bash
++git clone https://github.com/AliQaash/student-task-manager.git
++cd student-task-manager
++```
++
++## Usage
+ 
+ ```bash
+ python3 main.py
+ ```
+ 
+-Tasks are saved in `tasks.json` in the project folder.
++```
++==== Student Task Manager ====
++1. Add task
++2. Show tasks
++3. Complete task
++4. Delete task
++5. Exit
++Choose an option:
++```
++
++See [docs/user-guide.md](docs/user-guide.md) for a step-by-step guide.
++
++## Running the tests
++
++```bash
++python3 -m unittest discover -s tests -v
++```
++
++The same command runs in the [Tests workflow](.github/workflows/tests.yml) on GitHub Actions.
++
++## Project structure
++
++```
++student-task-manager/
++├── main.py                 # console menu
++├── task_manager.py         # Task and TaskManager logic
++├── tests/                  # unittest test suite
++├── docs/user-guide.md      # user guide
++├── lab-evidence/           # screenshots and command output for the lab
++├── LAB-REPORT.md           # assignment report
++└── .github/workflows/      # GitHub Actions workflow
++```
+ 
+ ## Roadmap
+ 
+ - Due dates for tasks
+ - Sorting tasks by status
++
++## License
++
++MIT, see [LICENSE](LICENSE).
+diff --git a/docs/user-guide.md b/docs/user-guide.md
+new file mode 100644
+index 0000000..72d0d8d
+--- /dev/null
++++ b/docs/user-guide.md
+@@ -0,0 +1,73 @@
++# User Guide: Student Task Manager
++
++## Starting the program
++
++Open a terminal in the project folder and run:
++
++```bash
++python3 main.py
++```
++
++The main menu appears:
++
++```
++==== Student Task Manager ====
++1. Add task
++2. Show tasks
++3. Complete task
++4. Delete task
++5. Exit
++```
++
++Type the number of an option and press **Enter**.
++
++## 1. Add a task
++
++Choose `1` and type the task title.
++
++```
++Task title: Prepare for DevOps viva
++Added task #1: Prepare for DevOps viva
++```
++
++An empty title (or one made only of spaces) is not accepted:
++
++```
++Task title:
++Error: Task title cannot be empty.
++```
++
++## 2. Show tasks
++
++Choose `2` to see every task. `[x]` means completed and `[ ]` means still pending.
++
++```
++[ ] 1. Prepare for DevOps viva
++[x] 2. Submit lab report
++```
++
++## 3. Complete a task
++
++Choose `3`. The task list is shown; type the ID of the task you finished.
++
++```
++Enter the ID of the task to complete: 1
++Task #1 marked as completed.
++```
++
++## 4. Delete a task
++
++Choose `4` and type the ID of the task to remove.
++
++```
++Enter the ID of the task to delete: 2
++Deleted task #2: Submit lab report
++```
++
++If the ID is not a number, or no task has that ID, an error message is shown and nothing
++is deleted.
++
++## 5. Exit
++
++Choose `5` to quit. Your tasks are saved in `tasks.json` and will be there next time you
++start the program. Delete that file if you want to start with an empty list.
+
+$ git pull
+From https://github.com/AliQaash/student-task-manager
+   cca2bf9..0878ecc  main       -> origin/main
+Updating cca2bf9..0878ecc
+Fast-forward
+ LAB-REPORT.md      | 61 +++++++++++++++++++++++++++++++++++++++++++++
+ README.md          | 68 +++++++++++++++++++++++++++++++++++++++++++++++---
+ docs/user-guide.md | 73 ++++++++++++++++++++++++++++++++++++++++++++++++++++++
+ 3 files changed, 198 insertions(+), 4 deletions(-)
+ create mode 100644 LAB-REPORT.md
+ create mode 100644 docs/user-guide.md
+
+$ gh pr view 10 --json number,title,state,mergedAt,closingIssuesReferences --jq "PR #\(.number) \(.title) -> \(.state) at \(.mergedAt); closes: \([.closingIssuesReferences[].number] | map("#\(.)") | join(", "))"
+PR #10 Add README, user guide and lab report -> MERGED at 2026-11-18T08:12:08Z; closes: #5
+

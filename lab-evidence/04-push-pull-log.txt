@@ -1,0 +1,14 @@
+$ git push
+To https://github.com/AliQaash/student-task-manager.git
+   2f03728..e93b485  main -> main
+
+$ git pull
+Already up to date.
+
+$ git log --oneline
+e93b485 Describe the project and how to run it in README
+2f03728 Save tasks to a JSON file between runs
+7b4c31c Add console menu for the task manager
+6ca311e Add Task model and TaskManager with add and list
+ab54315 Initial commit
+

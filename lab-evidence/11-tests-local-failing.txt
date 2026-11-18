@@ -1,0 +1,24 @@
+$ /Library/Frameworks/Python.framework/Versions/3.14/bin/python3 -m unittest discover -s tests -v
+test_add_task_creates_pending_task (test_task_manager.TestAddTask.test_add_task_creates_pending_task) ... ok
+test_add_task_rejects_empty_title (test_task_manager.TestAddTask.test_add_task_rejects_empty_title) ... ok
+test_add_task_strips_whitespace (test_task_manager.TestAddTask.test_add_task_strips_whitespace) ... ok
+test_complete_task_marks_task_done (test_task_manager.TestCompleteTask.test_complete_task_marks_task_done) ... FAIL
+test_complete_unknown_task_raises (test_task_manager.TestCompleteTask.test_complete_unknown_task_raises) ... ok
+test_delete_task_removes_only_that_task (test_task_manager.TestDeleteTask.test_delete_task_removes_only_that_task) ... ok
+test_delete_unknown_task_raises (test_task_manager.TestDeleteTask.test_delete_unknown_task_raises) ... ok
+test_tasks_are_saved_and_loaded (test_task_manager.TestPersistence.test_tasks_are_saved_and_loaded) ... ok
+
+======================================================================
+FAIL: test_complete_task_marks_task_done (test_task_manager.TestCompleteTask.test_complete_task_marks_task_done)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/Users/nisarahmed/assignments/student-task-manager/tests/test_task_manager.py", line 40, in test_complete_task_marks_task_done
+    self.assertFalse(self.manager.get_task(self.task.id).completed)
+    ~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+AssertionError: True is not false
+
+----------------------------------------------------------------------
+Ran 8 tests in 0.002s
+
+FAILED (failures=1)
+

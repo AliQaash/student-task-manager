@@ -1,0 +1,41 @@
+$ git diff --stat
+ .gitignore      |  3 +++
+ main.py         |  4 +++-
+ task_manager.py | 28 +++++++++++++++++++++++++---
+ 3 files changed, 31 insertions(+), 4 deletions(-)
+
+$ git diff main.py .gitignore
+diff --git a/.gitignore b/.gitignore
+index 6ff7378..a5c9c78 100644
+--- a/.gitignore
++++ b/.gitignore
+@@ -221,3 +221,6 @@ __marimo__/
+ 
+ # Streamlit
+ .streamlit/secrets.toml
++
++# Local task data
++tasks.json
+diff --git a/main.py b/main.py
+index 02465e1..5bc428b 100644
+--- a/main.py
++++ b/main.py
+@@ -2,6 +2,8 @@
+ 
+ from task_manager import TaskManager
+ 
++DATA_FILE = "tasks.json"
++
+ MENU = """
+ ==== Student Task Manager ====
+ 1. Add task
+@@ -45,7 +47,7 @@ def handle_delete(manager):
+ 
+ 
+ def main():
+-    manager = TaskManager()
++    manager = TaskManager(DATA_FILE)
+     actions = {
+         "1": handle_add,
+         "2": handle_list,
+

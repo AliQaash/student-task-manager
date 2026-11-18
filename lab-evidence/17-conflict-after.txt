@@ -1,0 +1,49 @@
+$ git status
+On branch main
+Your branch is ahead of 'origin/main' by 2 commits.
+  (use "git push" to publish your local commits)
+
+All conflicts fixed but you are still merging.
+  (use "git commit" to conclude merge)
+
+Changes to be committed:
+	modified:   README.md
+
+$ git log --oneline --graph -n 8
+*   cca2bf9 Merge branch 'status/testing'
+|\  
+| * da68eb0 Set project status to Testing and add a roadmap
+* |   50cc422 Merge branch 'status/in-development'
+|\ \  
+| |/  
+|/|   
+| * f212568 Update project status to In development
+|/  
+* a4e1b58 Add project status to README
+*   8626cb4 Merge pull request #9 from AliQaash/feature/tests-ci
+|\  
+| * 41dd655 Fix wrong assertion in complete-task test
+| * 30be871 Add unittest suite and GitHub Actions test workflow
+|/  
+
+$ cat README.md
+# Student Task Manager
+
+A small Python console application that helps a student keep track of tasks.
+You can add tasks, show the list, mark tasks as completed and delete them.
+
+Project status: In development and testing
+
+## Run
+
+```bash
+python3 main.py
+```
+
+Tasks are saved in `tasks.json` in the project folder.
+
+## Roadmap
+
+- Due dates for tasks
+- Sorting tasks by status
+

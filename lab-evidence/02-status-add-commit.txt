@@ -1,0 +1,17 @@
+$ git status
+On branch main
+Your branch is up to date with 'origin/main'.
+
+Untracked files:
+  (use "git add <file>..." to include in what will be committed)
+	task_manager.py
+
+nothing added to commit but untracked files present (use "git add" to track)
+
+$ git status --short
+A  task_manager.py
+
+$ git push
+To https://github.com/AliQaash/student-task-manager.git
+   ab54315..6ca311e  main -> main
+

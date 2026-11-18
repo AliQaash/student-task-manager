@@ -1,0 +1,89 @@
+$ git log --oneline --graph --all
+*   0878ecc Merge pull request #10 from AliQaash/docs/readme-user-guide
+|\  
+| * 7576234 Add lab report
+| * 458b804 Add user guide
+| * f615e2e Document features, setup, usage and tests in README
+|/  
+*   cca2bf9 Merge branch 'status/testing'
+|\  
+| * da68eb0 Set project status to Testing and add a roadmap
+* |   50cc422 Merge branch 'status/in-development'
+|\ \  
+| |/  
+|/|   
+| * f212568 Update project status to In development
+|/  
+* a4e1b58 Add project status to README
+*   8626cb4 Merge pull request #9 from AliQaash/feature/tests-ci
+|\  
+| * 41dd655 Fix wrong assertion in complete-task test
+| * 30be871 Add unittest suite and GitHub Actions test workflow
+|/  
+*   08e7b5e Merge pull request #8 from AliQaash/feature/delete-task
+|\  
+| * 75befc5 Let the user delete a task from the menu
+| * 137e421 Add delete_task with task ID validation
+* |   4f43bc6 Merge pull request #7 from AliQaash/feature/complete-task
+|\ \  
+| * | 176b915 Let the user complete a task from the menu
+| * | 1daca7a Add complete_task to mark a task as done
+| |/  
+* |   00fe3d5 Merge pull request #6 from AliQaash/feature/add-task
+|\ \  
+| |/  
+|/|   
+| * 09192fd Show an error message when a task title is invalid
+| * 3617a8d Reject empty and overly long task titles
+|/  
+* e93b485 Describe the project and how to run it in README
+* 2f03728 Save tasks to a JSON file between runs
+* 7b4c31c Add console menu for the task manager
+* 6ca311e Add Task model and TaskManager with add and list
+* ab54315 Initial commit
+
+$ git branch -a
+  docs/readme-user-guide
+  feature/add-task
+  feature/complete-task
+  feature/delete-task
+  feature/tests-ci
+* main
+  status/in-development
+  status/testing
+  remotes/origin/HEAD -> origin/main
+  remotes/origin/docs/readme-user-guide
+  remotes/origin/feature/add-task
+  remotes/origin/feature/complete-task
+  remotes/origin/feature/delete-task
+  remotes/origin/feature/tests-ci
+  remotes/origin/main
+  remotes/origin/status/in-development
+  remotes/origin/status/testing
+
+$ gh pr list --state merged
+10	Add README, user guide and lab report	docs/readme-user-guide	MERGED	2026-11-18T08:12:01Z
+9	Add unit tests and GitHub Actions workflow	feature/tests-ci	MERGED	2026-11-18T08:10:51Z
+8	Delete a task using a valid task ID	feature/delete-task	MERGED	2026-11-18T08:10:33Z
+7	Mark a selected task as completed	feature/complete-task	MERGED	2026-11-18T08:10:19Z
+6	Validate task titles when adding a task	feature/add-task	MERGED	2026-11-18T08:10:03Z
+
+$ gh issue list --state all
+5	CLOSED	Write README, user guide and lab report	documentation	2026-11-18T08:12:10Z
+4	CLOSED	Add unit tests and a GitHub Actions workflow	testing	2026-11-18T08:11:45Z
+3	CLOSED	Delete a task using a valid task ID	enhancement, validation	2026-11-18T08:10:44Z
+2	CLOSED	Mark a selected task as completed	enhancement	2026-11-18T08:10:29Z
+1	CLOSED	Validate task titles when adding a task	enhancement, validation	2026-11-18T08:10:15Z
+
+$ gh run list --limit 10
+in_progress		Merge pull request #10 from AliQaash/docs/readme-user-guide	Tests	main	push	44264965321	2s	2026-11-18T08:12:11Z
+completed	success	Add README, user guide and lab report	Tests	docs/readme-user-guide	pull_request	44264950267	8s	2026-11-18T08:12:04Z
+completed	success	Merge branch 'status/testing'	Tests	main	push	44264934208	8s	2026-11-18T08:11:58Z
+completed	success	Add project status to README	Tests	main	push	44264917091	9s	2026-11-18T08:11:51Z
+completed	success	Merge pull request #9 from AliQaash/feature/tests-ci	Tests	main	push	44264907122	10s	2026-11-18T08:11:46Z
+completed	success	Add unit tests and GitHub Actions workflow	Tests	feature/tests-ci	pull_request	44264848418	9s	2026-11-18T08:11:21Z
+completed	failure	Add unit tests and GitHub Actions workflow	Tests	feature/tests-ci	pull_request	44264790104	8s	2026-11-18T08:10:55Z
+
+$ git rev-list --count HEAD
+26
+

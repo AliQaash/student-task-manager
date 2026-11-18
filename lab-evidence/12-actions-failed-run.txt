@@ -1,0 +1,64 @@
+$ gh run view 44264790104
+
+X feature/tests-ci Tests AliQaash/student-task-manager#9 · 44264790104
+Triggered via pull_request less than a minute ago
+
+JOBS
+X test in 6s (ID 134666504757)
+  ✓ Set up job
+  ✓ Check out code
+  ✓ Set up Python
+  X Run unit tests
+  - Post Set up Python
+  ✓ Post Check out code
+  ✓ Complete job
+
+ANNOTATIONS
+! Node.js 20 is deprecated. The following actions target Node.js 20 but are being forced to run on Node.js 24: actions/checkout@v4, actions/setup-python@v5. For more information see: https://github.blog/changelog/2025-09-19-deprecation-of-node-20-on-github-actions-runners/
+test: .github#2
+
+X Process completed with exit code 1.
+test: .github#33
+
+- "The ubuntu-latest label will migrate to Ubuntu 26 beginning October 19, 2026. For more information, see https://github.com/actions/runner-images/issues/14748"
+test: .github#1
+
+
+To see what failed, try: gh run view 44264790104 --log-failed
+View this run on GitHub: https://github.com/AliQaash/student-task-manager/actions/runs/44264790104
+
+$ gh run view 44264790104 --log-failed
+test	Run unit tests	﻿2026-11-18T08:11:00.2912877Z ##[group]Run python -m unittest discover -s tests -v
+test	Run unit tests	2026-11-18T08:11:00.2914414Z ^[[36;1mpython -m unittest discover -s tests -v^[[0m
+test	Run unit tests	2026-11-18T08:11:00.2972589Z shell: /usr/bin/bash -e {0}
+test	Run unit tests	2026-11-18T08:11:00.2973229Z env:
+test	Run unit tests	2026-11-18T08:11:00.2973901Z   pythonLocation: /opt/hostedtoolcache/Python/3.12.16/x64
+test	Run unit tests	2026-11-18T08:11:00.2975073Z   PKG_CONFIG_PATH: /opt/hostedtoolcache/Python/3.12.16/x64/lib/pkgconfig
+test	Run unit tests	2026-11-18T08:11:00.2975947Z   Python_ROOT_DIR: /opt/hostedtoolcache/Python/3.12.16/x64
+test	Run unit tests	2026-11-18T08:11:00.2976761Z   Python2_ROOT_DIR: /opt/hostedtoolcache/Python/3.12.16/x64
+test	Run unit tests	2026-11-18T08:11:00.2977532Z   Python3_ROOT_DIR: /opt/hostedtoolcache/Python/3.12.16/x64
+test	Run unit tests	2026-11-18T08:11:00.2978307Z   LD_LIBRARY_PATH: /opt/hostedtoolcache/Python/3.12.16/x64/lib
+test	Run unit tests	2026-11-18T08:11:00.2979096Z ##[endgroup]
+test	Run unit tests	2026-11-18T08:11:00.4481717Z test_add_task_creates_pending_task (test_task_manager.TestAddTask.test_add_task_creates_pending_task) ... ok
+test	Run unit tests	2026-11-18T08:11:00.4486183Z test_add_task_rejects_empty_title (test_task_manager.TestAddTask.test_add_task_rejects_empty_title) ... ok
+test	Run unit tests	2026-11-18T08:11:00.4488438Z test_add_task_strips_whitespace (test_task_manager.TestAddTask.test_add_task_strips_whitespace) ... ok
+test	Run unit tests	2026-11-18T08:11:00.4489974Z test_complete_task_marks_task_done (test_task_manager.TestCompleteTask.test_complete_task_marks_task_done) ... FAIL
+test	Run unit tests	2026-11-18T08:11:00.4491458Z test_complete_unknown_task_raises (test_task_manager.TestCompleteTask.test_complete_unknown_task_raises) ... ok
+test	Run unit tests	2026-11-18T08:11:00.4493020Z test_delete_task_removes_only_that_task (test_task_manager.TestDeleteTask.test_delete_task_removes_only_that_task) ... ok
+test	Run unit tests	2026-11-18T08:11:00.4494900Z test_delete_unknown_task_raises (test_task_manager.TestDeleteTask.test_delete_unknown_task_raises) ... ok
+test	Run unit tests	2026-11-18T08:11:00.4497331Z test_tasks_are_saved_and_loaded (test_task_manager.TestPersistence.test_tasks_are_saved_and_loaded) ... ok
+test	Run unit tests	2026-11-18T08:11:00.4498509Z 
+test	Run unit tests	2026-11-18T08:11:00.4498867Z ======================================================================
+test	Run unit tests	2026-11-18T08:11:00.4500139Z FAIL: test_complete_task_marks_task_done (test_task_manager.TestCompleteTask.test_complete_task_marks_task_done)
+test	Run unit tests	2026-11-18T08:11:00.4501337Z ----------------------------------------------------------------------
+test	Run unit tests	2026-11-18T08:11:00.4502074Z Traceback (most recent call last):
+test	Run unit tests	2026-11-18T08:11:00.4509398Z   File "/home/runner/work/student-task-manager/student-task-manager/tests/test_task_manager.py", line 40, in test_complete_task_marks_task_done
+test	Run unit tests	2026-11-18T08:11:00.4510859Z     self.assertFalse(self.manager.get_task(self.task.id).completed)
+test	Run unit tests	2026-11-18T08:11:00.4511620Z AssertionError: True is not false
+test	Run unit tests	2026-11-18T08:11:00.4512085Z 
+test	Run unit tests	2026-11-18T08:11:00.4512438Z ----------------------------------------------------------------------
+test	Run unit tests	2026-11-18T08:11:00.4513153Z Ran 8 tests in 0.002s
+test	Run unit tests	2026-11-18T08:11:00.4513420Z 
+test	Run unit tests	2026-11-18T08:11:00.4513695Z FAILED (failures=1)
+test	Run unit tests	2026-11-18T08:11:00.4581231Z ##[error]Process completed with exit code 1.
+

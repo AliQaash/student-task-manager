@@ -1,0 +1,76 @@
+$ git branch -a
+  feature/add-task
+  feature/complete-task
+  feature/delete-task
+* main
+  remotes/origin/HEAD -> origin/main
+  remotes/origin/feature/add-task
+  remotes/origin/feature/complete-task
+  remotes/origin/feature/delete-task
+  remotes/origin/main
+
+$ git log --oneline main..feature/add-task
+09192fd Show an error message when a task title is invalid
+3617a8d Reject empty and overly long task titles
+
+$ git diff --stat main feature/add-task
+ main.py         |  6 +++++-
+ task_manager.py | 12 +++++++++++-
+ 2 files changed, 16 insertions(+), 2 deletions(-)
+
+$ git log --oneline main..feature/complete-task
+176b915 Let the user complete a task from the menu
+1daca7a Add complete_task to mark a task as done
+
+$ git diff --stat main feature/complete-task
+ main.py         | 11 ++++++++++-
+ task_manager.py | 12 ++++++++++--
+ 2 files changed, 20 insertions(+), 3 deletions(-)
+
+$ git log --oneline main..feature/delete-task
+75befc5 Let the user delete a task from the menu
+137e421 Add delete_task with task ID validation
+
+$ git diff --stat main feature/delete-task
+ main.py         | 11 ++++++++++-
+ task_manager.py | 12 ++++++++++--
+ 2 files changed, 20 insertions(+), 3 deletions(-)
+
+$ git diff feature/complete-task feature/delete-task -- task_manager.py
+diff --git a/task_manager.py b/task_manager.py
+index 8e0779e..fc34f0c 100644
+--- a/task_manager.py
++++ b/task_manager.py
+@@ -51,23 +51,23 @@ class TaskManager:
+     # ----- complete -----
+ 
+     def complete_task(self, task_id):
+-        """Mark the task with the given id as completed and return it.
++        """Mark a task as completed."""
++        raise NotImplementedError("Completing tasks is not implemented yet")
++
++    # ----- delete -----
++
++    def delete_task(self, task_id):
++        """Remove the task with the given id and return it.
+ 
+         Raises ValueError if no task has that id.
+         """
+         task = self.get_task(task_id)
+         if task is None:
+             raise ValueError(f"No task found with ID {task_id}.")
+-        task.completed = True
++        self.tasks.remove(task)
+         self.save()
+         return task
+ 
+-    # ----- delete -----
+-
+-    def delete_task(self, task_id):
+-        """Delete a task."""
+-        raise NotImplementedError("Deleting tasks is not implemented yet")
+-
+     # ----- persistence -----
+ 
+     def save(self):
+

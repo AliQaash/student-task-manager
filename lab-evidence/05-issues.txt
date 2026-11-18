@@ -1,0 +1,7 @@
+$ gh issue list --state all
+5	OPEN	Write README, user guide and lab report	documentation	2026-11-18T08:09:51Z
+4	OPEN	Add unit tests and a GitHub Actions workflow	testing	2026-11-18T08:09:49Z
+3	OPEN	Delete a task using a valid task ID	enhancement, validation	2026-11-18T08:09:46Z
+2	OPEN	Mark a selected task as completed	enhancement	2026-11-18T08:09:43Z
+1	OPEN	Validate task titles when adding a task	enhancement, validation	2026-11-18T08:09:41Z
+

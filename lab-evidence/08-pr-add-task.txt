@@ -1,0 +1,65 @@
+$ gh pr diff 6 --name-only
+main.py
+task_manager.py
+
+$ gh pr diff 6
+diff --git a/main.py b/main.py
+index 5bc428b..4459bc8 100644
+--- a/main.py
++++ b/main.py
+@@ -24,7 +24,11 @@ def read_task_id(prompt="Enter task ID: "):
+ 
+ def handle_add(manager):
+     title = input("Task title: ")
+-    task = manager.add_task(title)
++    try:
++        task = manager.add_task(title)
++    except ValueError as error:
++        print(f"Error: {error}")
++        return
+     print(f"Added task #{task.id}: {task.title}")
+ 
+ 
+diff --git a/task_manager.py b/task_manager.py
+index 23e386c..7578bfc 100644
+--- a/task_manager.py
++++ b/task_manager.py
+@@ -4,6 +4,8 @@
+ import os
+ from dataclasses import asdict, dataclass
+ 
++MAX_TITLE_LENGTH = 100
++
+ 
+ @dataclass
+ class Task:
+@@ -29,7 +31,15 @@ def _next_id(self):
+     # ----- add -----
+ 
+     def add_task(self, title):
+-        """Create a new task and return it."""
++        """Create a new task and return it.
++
++        Raises ValueError if the title is empty or longer than MAX_TITLE_LENGTH.
++        """
++        if title is None or not title.strip():
++            raise ValueError("Task title cannot be empty.")
++        title = title.strip()
++        if len(title) > MAX_TITLE_LENGTH:
++            raise ValueError(f"Task title must be at most {MAX_TITLE_LENGTH} characters.")
+         task = Task(id=self._next_id(), title=title)
+         self.tasks.append(task)
+         self.save()
+
+$ git pull
+From https://github.com/AliQaash/student-task-manager
+   e93b485..00fe3d5  main       -> origin/main
+Updating e93b485..00fe3d5
+Fast-forward
+ main.py         |  6 +++++-
+ task_manager.py | 12 +++++++++++-
+ 2 files changed, 16 insertions(+), 2 deletions(-)
+
+$ gh pr view 6 --json number,title,state,mergedAt,closingIssuesReferences --jq "PR #\(.number) \(.title) -> \(.state) at \(.mergedAt); closes: \([.closingIssuesReferences[].number] | map("#\(.)") | join(", "))"
+PR #6 Validate task titles when adding a task -> MERGED at 2026-11-18T08:10:13Z; closes: #1
+
