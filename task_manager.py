@@ -75,8 +75,16 @@ class TaskManager:
     # ----- delete -----
 
     def delete_task(self, task_id):
-        """Delete a task."""
-        raise NotImplementedError("Deleting tasks is not implemented yet")
+        """Remove the task with the given id and return it.
+
+        Raises ValueError if no task has that id.
+        """
+        task = self.get_task(task_id)
+        if task is None:
+            raise ValueError(f"No task found with ID {task_id}.")
+        self.tasks.remove(task)
+        self.save()
+        return task
 
     # ----- persistence -----
 
