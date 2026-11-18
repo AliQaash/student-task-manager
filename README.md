@@ -3,7 +3,7 @@
 A small Python console application that helps a student keep track of tasks.
 You can add tasks, show the list, mark tasks as completed and delete them.
 
-Project status: Planning
+Project status: In development
 
 ## Run
 
