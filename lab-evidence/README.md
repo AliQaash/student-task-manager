@@ -13,4 +13,4 @@ Command output captured while building the project. Each `.txt` file has a `.png
 | 16-conflict-before, 17-conflict-after | D: merge conflict |
 | 19-final-history | H: final history |
 
-Screenshots of the GitHub web pages are in `github-*.png`.
+Screenshots of the GitHub web pages (Issues, PRs + review, Actions failed/passed runs, network graph, release) are in `github-*.jpg`.
