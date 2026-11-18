@@ -3,7 +3,7 @@
 **Student:** Ali Qaash  
 **Registration No.:** FA23-BSE-026  
 **Course:** CSC418 DevOps for Cloud Computing  
-**Assignment:** Student Task Manager Development and Version Control Using Git and GitHub
+**Assignment:** Student Task Manager Development and Version Control Using Git and GitHub  
 **Repository:** https://github.com/AliQaash/student-task-manager
 
 ## 1. Git vs GitHub; add, commit and push
@@ -50,13 +50,20 @@ next run passed after I fixed it.
 
 ## 5. A difficulty I faced and how I solved it
 
-<!-- Rewrite this in your own words before submitting. -->
-The hardest part was the merge conflict in Part D. When I merged `status/testing` after
-`status/in-development`, Git stopped and README.md contained `<<<<<<<`, `=======` and
-`>>>>>>>` markers. At first I didn't know which part to keep. I ran `git status` to see the
-conflicted file and `git diff` to compare both versions. Then I edited the line to combine
-both changes ("In development and testing"), removed the markers, kept the new Roadmap
-section from the second branch, and finished with `git add` and `git commit`.
+My first problem was getting connected to GitHub from the terminal. The first time I ran
+`gh auth login`, the login did not go through, so I could not create the repository or push
+anything. I tried again, chose **GitHub.com → HTTPS → Login with a web browser**, copied the
+one-time code into the browser page and approved it. After that, `gh auth status` showed my
+account as active and `git push` worked without asking for a password.
+
+The second difficulty was the merge conflict in Part D. After merging `status/in-development`,
+merging `status/testing` stopped with `CONFLICT (content): Merge conflict in README.md`, and the
+file had `<<<<<<<`, `=======` and `>>>>>>>` markers around the "Project status" line. I used
+`git status` to find the conflicted file and `git diff` to see both versions. Then I replaced the
+two lines with one combined line ("In development and testing"), deleted the markers, and checked
+that the Roadmap section from the second branch was still there. Finally I ran `git add README.md`
+and `git commit` to finish the merge. I learned that a conflict only happens when both branches
+change the same lines, and that Git keeps all the other changes automatically.
 
 ## Evidence
 
