@@ -1,6 +1,8 @@
 # Lab Report: Assignment 4
 
-**Course:** CSC418 DevOps for Cloud Computing
+**Student:** Ali Qaash  
+**Registration No.:** FA23-BSE-026  
+**Course:** CSC418 DevOps for Cloud Computing  
 **Assignment:** Student Task Manager Development and Version Control Using Git and GitHub
 **Repository:** https://github.com/AliQaash/student-task-manager
 

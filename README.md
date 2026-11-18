@@ -7,6 +7,8 @@ It was built for CSC418 (DevOps for Cloud Computing) Lab Assignment 4 to practis
 Git and GitHub workflow: commits, branches, Issues, Pull Requests, merge conflicts,
 GitHub Actions and releases.
 
+**Student:** Ali Qaash (FA23-BSE-026)
+
 Project status: Released (v1.0.0)
 
 ## Features
